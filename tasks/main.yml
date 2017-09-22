@@ -22,7 +22,7 @@
 
 # License file management
   # Install a license file 
-- include: install_license.yml
+- include_tasks: install_license.yml
   when: teamspeak_use_license
 
   # Remove a possible leftover license file when teamspeak_use_license is disabled.
@@ -37,7 +37,7 @@
 
 # Configuration of TeamSpeak 3 Server (if requested)
   # Create configuration file
-- include: config.yml
+- include_tasks: config.yml
   when: teamspeak_ini_enabled
 
   # Clean-up a lingering configuration file if we don't need it anymore
@@ -61,5 +61,5 @@
 
 # Display Teamspeak 3 Server Token and Password if this is a new installation
 # (a new installation has no userdata, and this is checked for in install.yml)
-- include: display.yml
-  when: userdata.stat.exists is defined and userdata.stat.exists == False
+- include_tasks: display.yml
+  when: userdata.stat is defined and userdata.stat.exists == False
