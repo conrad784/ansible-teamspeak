@@ -13,7 +13,7 @@
         - ../vars
 
 # Installation of TeamSpeak 3 Server 
-- include: install.yml
+- include_tasks: install.yml
 
 # Store the TeamSpeak 3 Server directory in a short variable
 - name: "Set TeamSpeak 3 Server directory fact"
