@@ -57,14 +57,5 @@
   notify:
     - Restart TeamSpeak 3 Server
 
-- name: "Install : Install TeamSpeak 3 systemctl service file"
-  template:
-    src: teamspeak3-server.service.j2
-    dest: "{{ systemd_service_file_path }}/teamspeak3-server.service"
-    mode: 0644
-    owner: root
-    group: root
-  notify:
-    - Reload systemd
-    - Restart TeamSpeak 3 Server
-
+- name: "install the right init script"
+  include_tasks: "{{ ansible_service_mgr }}.yml"

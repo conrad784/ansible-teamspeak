@@ -4,6 +4,11 @@
 - name: Reload systemd
   command: systemctl daemon-reload
 
+- name: Reload initd
+  service:
+    name: teamspeak3-server
+    enabled: yes
+
 - name: Restart TeamSpeak 3 Server
   service:
     name: teamspeak3-server

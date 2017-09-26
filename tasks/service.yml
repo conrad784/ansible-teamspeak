@@ -1,0 +1,12 @@
+---
+
+- name: "Install : Install TeamSpeak 3 initd service file"
+  template:
+    src: teamspeak3-server.initd.j2
+    dest: "/etc/init.d/teamspeak3-server"
+    mode: "u=rwx,g=rx,o=rx"
+    owner: root
+    group: root
+  notify:
+    - Reload initd
+    - Restart TeamSpeak 3 Server
