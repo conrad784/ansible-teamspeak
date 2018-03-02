@@ -33,6 +33,16 @@
     path: "{{ ts3server_dir }}/licensekey.dat"
     state: absent
   when: not teamspeak_use_license
+
+  #  accepting license is mandatory >=3.1.0
+- name: "Accept LICENSE"
+  copy:
+    content: ""
+    dest: "{{ ts3server_dir }}/.ts3server_license_accepted"
+    force: no
+    group: "{{ teamspeak.user }}"
+    owner: "{{ teamspeak.user }}"
+    mode: "u=rw,g=r,o=r"
 # End of license file management
 
 # Configuration of TeamSpeak 3 Server (if requested)
