@@ -3,16 +3,16 @@
 
 - name: "Load OS specific variables"
   include_vars: "{{ item }}"
-  with_first_found: 
-    - files: 
+  with_first_found:
+    - files:
         - "{{ ansible_distribution|lower }}.yml"
         - "{{ ansible_os_family|lower }}.yml"
         - "{{ ansible_system|lower }}.yml"
         - main.yml
-      paths: 
+      paths:
         - ../vars
 
-# Installation of TeamSpeak 3 Server 
+# Installation of TeamSpeak 3 Server
 - include_tasks: install.yml
 
 # Store the TeamSpeak 3 Server directory in a short variable
@@ -21,7 +21,7 @@
     ts3server_dir: "{{ teamspeak.home }}/{{ teamspeak.symlink }}/teamspeak3-server_linux_amd64"
 
 # License file management
-  # Install a license file 
+  # Install a license file
 - include_tasks: install_license.yml
   when: teamspeak_use_license
 
@@ -59,7 +59,7 @@
 # End of configuration
 
 # Perform the running of handlers now
-# So we can do "Reload systemd" (and possibly queued clean-up) 
+# So we can do "Reload systemd" (and possibly queued clean-up)
 # before we start using the new/changed .service file.
 - meta: flush_handlers
 # Make sure TeamSpeak 3 Server is started and enabled
@@ -72,4 +72,6 @@
 # Display Teamspeak 3 Server Token and Password if this is a new installation
 # (a new installation has no userdata, and this is checked for in install.yml)
 - include_tasks: display.yml
-  when: userdata.stat is defined and userdata.stat.exists == False
+  when:
+    - userdata.stat is defined
+    - not userdata.stat.exists
