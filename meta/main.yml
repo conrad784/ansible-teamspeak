@@ -6,8 +6,9 @@ galaxy_info:
   platforms:
   - name: Debian
     versions:
-    - 8
-    - 9
+    - jessie
+    - stretch
+    - buster
 
   galaxy_tags:
     - teamspeak3
