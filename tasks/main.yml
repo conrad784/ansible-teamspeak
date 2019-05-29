@@ -23,7 +23,7 @@
 # License file management
   # Install a license file
 - include_tasks: install_license.yml
-  when: teamspeak_use_license
+  when: teamspeak_use_license|bool
 
   # Remove a possible leftover license file when teamspeak_use_license is disabled.
   # The default is to look for it in the TeamSpeak 3 Server directory, so
@@ -48,7 +48,7 @@
 # Configuration of TeamSpeak 3 Server (if requested)
   # Create configuration file
 - include_tasks: config.yml
-  when: teamspeak_ini_enabled
+  when: teamspeak_ini_enabled|bool
 
   # Clean-up a lingering configuration file if we don't need it anymore
 - name: "Configuration : Clean-up old configuration file if needed"
