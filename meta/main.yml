@@ -2,7 +2,7 @@ galaxy_info:
   author: Conrad Sachweh
   description: Deploy a teamspeak3 server.
   license: license (MIT)
-  min_ansible_version: 2.2
+  min_ansible_version: 2.4
   platforms:
   - name: Debian
     versions:
