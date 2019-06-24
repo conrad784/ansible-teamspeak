@@ -10,7 +10,7 @@
     timeout: 10
 
 - name: "Display : Fetch the password of the Server Query Admin Account"
-  shell: set -o pipefail && journalctl --unit teamspeak3-server.service --reverse | awk -F'"' '/password=/ { print $4; exit }'
+  shell: journalctl --unit teamspeak3-server.service --reverse | awk -F'"' '/password=/ { print $4; exit }'
   register: __ts3_serveradmin_password
   changed_when: False
 
@@ -20,7 +20,7 @@
 
 - block:
   - name: "Display : Fetch the ServerAdmin privilege key (token)"
-    shell: set -o pipefail && journalctl --unit teamspeak3-server.service --reverse | awk -F'=' '/token=/ { print $2 ; exit }'
+    shell: journalctl --unit teamspeak3-server.service --reverse | awk -F'=' '/token=/ { print $2 ; exit }'
     register: __ts3_default_priv_token
     changed_when: False
   - name: "Display : Show the ServerAdmin privilege key"
