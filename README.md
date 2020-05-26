@@ -1,8 +1,9 @@
 # TeamSpeak 3 Server
 
 Role to deploy a TeamSpeak 3 server.  
-Inspired by [dharmab/ansible-playbooks/roles/teamspeak](https://github.com/dharmab/ansible-playbooks/tree/master/roles/teamspeak).
-Extended to work with upstart, init.d and systemd + works with TS3 >=3.1.0. ALso has support for configuration of ufw firewall.
+Inspired by [dharmab/ansible-playbooks/roles/teamspeak](https://github.com/dharmab/ansible-playbooks/tree/master/roles/teamspeak).  
+Extended to work with upstart, init.d and systemd + works with TS3 >=3.1.0.  
+Also has support for configuration of ufw firewall.
 
 This role defaults to setting up a basic TeamSpeak 3 Server without special configuration. It downloads, extracts, sets up and runs a TeamSpeak 3 Server without any bells and whistles. But in case you want to, you can have it configure TeamSpeak 3 Server for you in multiple ways (and more to come). The aim is to make this role usable for the simplest of deployments, e.g. "I just want a TeamSpeak 3 Server plain and simple", to more complex deployments making use of alternate ports, licenses and external databases.
 
