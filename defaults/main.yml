@@ -36,3 +36,5 @@ teamspeak_network:
 
 teamspeak_create_default_virtualserver: yes
 teamspeak_machine_id:
+
+teamspeak_firewall_ufw: no

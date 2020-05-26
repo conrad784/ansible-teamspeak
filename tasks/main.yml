@@ -58,6 +58,11 @@
   when: not teamspeak_ini_enabled
 # End of configuration
 
+# Configuration of firewall (if requested)
+- include_tasks: ufw.yml
+  when: teamspeak_firewall_ufw|bool
+# End of firewall configuration
+
 # Perform the running of handlers now
 # So we can do "Reload systemd" (and possibly queued clean-up)
 # before we start using the new/changed .service file.

@@ -1,0 +1,26 @@
+---
+- name: Open voice port (udp) in ufw
+  ufw:
+    rule: allow
+    port: "{{ teamspeak_network.voice.default_port }}"
+    proto: udp
+
+- name: Open filetransfer port (tcp) in ufw
+  ufw:
+    rule: allow
+    port: "{{ teamspeak_network.filetransfer.port }}"
+    proto: tcp
+
+- name: Open query port (tcp) in ufw
+  ufw:
+    rule: allow
+    port: "{{ teamspeak_network.query.port }}"
+    proto: tcp
+  when: teamspeak_network.query.enabled|bool
+
+- name: Open ssh query port (tcp) in ufw
+  ufw:
+    rule: allow
+    port: "{{ teamspeak_network.query_ssh.port }}"
+    proto: tcp
+  when: teamspeak_network.query_ssh.enabled|bool
