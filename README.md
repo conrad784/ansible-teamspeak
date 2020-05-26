@@ -1,8 +1,9 @@
 # TeamSpeak 3 Server
 
 Role to deploy a TeamSpeak 3 server.  
-Inspired by [dharmab/ansible-playbooks/roles/teamspeak](https://github.com/dharmab/ansible-playbooks/tree/master/roles/teamspeak).
-Extended to work with upstart, init.d and systemd + works with TS3 >=3.1.0.
+Inspired by [dharmab/ansible-playbooks/roles/teamspeak](https://github.com/dharmab/ansible-playbooks/tree/master/roles/teamspeak).  
+Extended to work with upstart, init.d and systemd + works with TS3 >=3.1.0.  
+Also has support for configuration of ufw firewall.
 
 This role defaults to setting up a basic TeamSpeak 3 Server without special configuration. It downloads, extracts, sets up and runs a TeamSpeak 3 Server without any bells and whistles. But in case you want to, you can have it configure TeamSpeak 3 Server for you in multiple ways (and more to come). The aim is to make this role usable for the simplest of deployments, e.g. "I just want a TeamSpeak 3 Server plain and simple", to more complex deployments making use of alternate ports, licenses and external databases.
 
@@ -62,9 +63,21 @@ Description of the `teamspeak_network` configuration block and it's options:
 * `teamspeak_network.filetransfer`: Empty. Contains nested properties of the file transfer server.
 * `teamspeak_network.filetransfer.port`: TCP port to use for file transfers. Default at TCP port 30033.
 * `teamspeak_network.filetransfer.ip`: IP address where file transfers are bound to. Default to 0.0.0.0, which binds any IP address.
-* `teamspeak_network.query`: Empty. Contains nested properties for the ServerQueries part of the server.
-* `teamspeak_network.query.port`: TCP port used for ServerQuery connections. Default at TCP port 10011.
-* `teamspeak_network.query.ip`: IP address where to listen for inbound ServerQuery connections. Default at 0.0.0.0, which binds any IP address.
+* `teamspeak_network.query`: Empty. Contains nested properties for the ServerQueries over telnet part of the server.
+* `teamspeak_network.query.enabled`: Set to `yes` to activate query interface over telnet. Default is `no`.
+* `teamspeak_network.query.port`: TCP port used for ServerQuery over telnet connections. Default at TCP port 10011.
+* `teamspeak_network.query.ip`: IP address where to listen for inbound ServerQuery over telnet connections. Default at 0.0.0.0, which binds any IP address.
+* `teamspeak_network.query_ssh`: Empty. Contains nested properties for the ServerQueries over ssh part of the server.
+* `teamspeak_network.query_ssh.enabled`: Set to `yes` to activate query interface over ssh. Default is `no`.
+* `teamspeak_network.query_ssh.port`: TCP port used for ServerQuery over ssh connections. Default at TCP port 10022.
+* `teamspeak_network.query_ssh.ip`: IP address where to listen for inbound ServerQuery over ssh connections. Default at 0.0.0.0, which binds any IP address.
+
+#### Firewall configuration
+
+Currently only [ufw](https://launchpad.net/ufw) is supported.
+
+* `teamspeak_firewall_ufw`: Set to `yes` to open ports in ufw. Default is `no`.
+
 
 #### Other options
 
@@ -98,3 +111,4 @@ MIT
 * Stefan Joosten `<stefan•ɑƬ•joosten•ɖɵʈ•nl>`
 * Egbert Verhage `<egbert•ɑƬ•eggiecode•ɖɵʈ•org>`
 * Conrad Sachweh `<conrad•ɑƬ•csachweh•ɖɵʈ•de`
+* Volker Aufschild `<mail•ɑƬ•volker-aufschild•ɖɵʈ•de`
